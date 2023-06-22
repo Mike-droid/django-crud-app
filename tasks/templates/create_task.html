@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Create task</h1>
+  <h1>Create task</h1>
+
+  {{ error }}
 
   <form method="post">
       {% csrf_token %}

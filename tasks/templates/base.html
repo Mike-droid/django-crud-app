@@ -17,7 +17,12 @@
         <span>Welcome {{ user }}!</span>
         <li>
           <a href="{% url 'tasks' %}">
-            Tasks
+            Pending tasks
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'tasks_completed' %}">
+            Completed tasks
           </a>
         </li>
         <li>

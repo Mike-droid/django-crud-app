@@ -7,7 +7,7 @@ class Task(models.Model):
   title = models.CharField(max_length=100)
   description = models.TextField(blank=True)
   created = models.DateTimeField(auto_now_add=True)
-  date_completed = models.DateTimeField(null=True)
+  date_completed = models.DateTimeField(null=True, blank=True) #! blank True es opcional para el admin
   important = models.BooleanField(default=False)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 

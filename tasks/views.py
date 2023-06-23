@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import CreateTaskForm
+from .models import Task
 
 # Create your views here.
 
@@ -38,7 +39,13 @@ def signup(request):
 
 
 def tasks(request):
-  return render(request, 'tasks.html')
+  tasks = Task.objects.filter(
+    user=request.user,
+    date_completed__isnull=True, #! solo muestra las tareas NO completadas
+  )
+  return render(request, 'tasks.html', {
+    'tasks': tasks
+  })
 
 
 def signout(request):
@@ -78,7 +85,7 @@ def create_task(request):
       new_task = form.save(commit=False)
       new_task.user = request.user
       new_task.save()
-      redirect('tasks')
+      return redirect('tasks')
     except ValueError:
       return render(request, 'create_task.html', {
       'task_form': CreateTaskForm(),

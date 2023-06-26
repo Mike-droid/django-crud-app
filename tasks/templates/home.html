@@ -7,7 +7,7 @@
     </section>
 
     <div>
-      {% if !user.is_authenticated %}
+      {% if not user.is_authenticated %}
         <a class="btn btn-dark" href="{% url 'signin' %}">
           Sign in
         </a>

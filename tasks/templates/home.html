@@ -7,12 +7,14 @@
     </section>
 
     <div>
-      <a class="btn btn-dark" href="{% url 'signin' %}">
-        Sign in
-      </a>
-      <a class="btn btn-secondary" href="{% url 'signup' %}">
-        Sign up
-      </a>
+      {% if !user.is_authenticated %}
+        <a class="btn btn-dark" href="{% url 'signin' %}">
+          Sign in
+        </a>
+        <a class="btn btn-secondary" href="{% url 'signup' %}">
+          Sign up
+        </a>
+      {% endif %}
     </div>
   </main>
 {% endblock content %}
